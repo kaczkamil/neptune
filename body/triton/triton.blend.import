@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cd5mysnps8a6k"
-valid=false
+path="res://.godot/imported/triton.blend-c3db3047041327d338227b416c679445.scn"
 
 [deps]
 
 source_file="res://body/triton/triton.blend"
+dest_files=["res://.godot/imported/triton.blend-c3db3047041327d338227b416c679445.scn"]
 
 [params]
 

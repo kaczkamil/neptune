@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://prladdb578pl"]
 
-[ext_resource type="PackedScene" uid="uid://ly7gdqyov4dc" path="res://body/neptune/neptune.glb" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b0nt4n13a6448" path="res://addons/starlight/Stars.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cqxqbfgkwugup" path="res://addons/starlight/StarGenerator.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://btsqeq1jx2xkn" path="res://body/neptune/neptune.glb" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://c0n7lji3qe0r8" path="res://body/triton/triton.glb" id="5_lquwl"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
@@ -13,9 +13,6 @@ background_energy_multiplier = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bvp3")
-
-[node name="neptune" parent="." instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.18753, 2.38419e-07, 3.37064)
 
 [node name="Stars" parent="." instance=ExtResource("2_h2yge")]
 script = ExtResource("3_h2yge")
@@ -189,3 +186,5 @@ popup/item_2/text = "01:00"
 popup/item_2/id = 2
 popup/item_3/text = "01:30"
 popup/item_3/id = 3
+
+[node name="neptune4" parent="." instance=ExtResource("5_7mycd")]
