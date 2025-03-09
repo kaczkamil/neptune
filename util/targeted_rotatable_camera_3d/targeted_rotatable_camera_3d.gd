@@ -7,7 +7,7 @@ class_name TargetedRotatableCamera3D
 
 @export var distance: float = 30.0:
 	set(v):
-		distance = v
+		distance = max(v, 0)
 		if camera != null:
 			camera.position.z = v
 @export var scroll_zoom: float = 2.0
@@ -35,3 +35,4 @@ func _unhandled_input(event: InputEvent) -> void:
 				distance -= scroll_zoom
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				distance += scroll_zoom
+	
