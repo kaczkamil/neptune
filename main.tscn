@@ -115,8 +115,11 @@ layout_mode = 2
 
 [node name="TimeControl" parent="CanvasLayer/MarginContainer2/BottomControlContainer/Panel" instance=ExtResource("9_kek77")]
 layout_mode = 1
-time_scale_max = 10.0
+time_scale = 0.0
+time_scale_min = 0.0
+time_scale_max = 5.0
 time_scale_step = 0.1
+time_scale_text_format = "10e%.1fx"
 
 [node name="ZoomButtonContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2/BottomControlContainer"]
 layout_mode = 2

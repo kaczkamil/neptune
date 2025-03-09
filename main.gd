@@ -52,7 +52,7 @@ func _update_info_display(info) -> void:
 func _on_time_control_changed(playing: bool, time_scale: float) -> void:
 	if time_manager != null:
 		time_manager.playing = playing
-		time_manager.time_scale = time_scale
+		time_manager.time_scale = 10 ** time_scale
 
 func _on_back_button_pressed() -> void:
 	focus_point = default_focus
