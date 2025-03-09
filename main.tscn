@@ -1,18 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://prladdb578pl"]
+[gd_scene load_steps=12 format=3 uid="uid://prladdb578pl"]
 
+[ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b0nt4n13a6448" path="res://addons/starlight/Stars.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cqxqbfgkwugup" path="res://addons/starlight/StarGenerator.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://daoi7ht5h2nc2" path="res://body/neptune/neptune.glb" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://blr18b47ybb2a" path="res://body/triton/triton.glb" id="5_lquwl"]
+[ext_resource type="Shader" uid="uid://57lcolu6kso5" path="res://body/orbit.gdshader" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://dni4taamws0q8" path="res://util/circular_rotator.gd" id="7_5vw27"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kek77"]
+size = Vector2(708, 708)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+render_priority = 0
+shader = ExtResource("6_7mycd")
 
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bvp3")
+
+[node name="TimeManager" type="Node" parent="."]
+script = ExtResource("1_5vw27")
+metadata/_custom_type_script = "uid://c02xus8vik0dy"
 
 [node name="Stars" parent="." instance=ExtResource("2_h2yge")]
 script = ExtResource("3_h2yge")
@@ -26,13 +40,24 @@ transform = Transform3D(0.923806, 0, 0.382861, 0, 1, 0, -0.382861, 0, 0.923806, 
 
 [node name="TargetedRotatableCamera3D" parent="." instance=ExtResource("4_1bvp3")]
 distance = 100.0
+scroll_zoom = 10.0
 
 [node name="Neptune" parent="." instance=ExtResource("4_7mycd")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
-[node name="triton" type="Node3D" parent="."]
+[node name="TritonOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Triton" parent="triton" instance=ExtResource("5_lquwl")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TritonOrbit"]
+mesh = SubResource("PlaneMesh_kek77")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="TritonOrbit"]
+script = ExtResource("7_5vw27")
+period = 120.0
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="Triton" parent="TritonOrbit/CircularRotator" instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 354, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

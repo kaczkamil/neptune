@@ -20,7 +20,7 @@ All space dimensions in this project will be represented as follows: 1 mm (megam
 	[_] Neso
 	[_] S/2021 N 1
 [_] Cicular orbits
-	[_] Planet rotation
+	[X] Planet rotation
 	[_] Time controls
 	[_] Orbit display
 [_] Click to switch focused body
