@@ -62,3 +62,9 @@ func _on_neptune_button_pressed() -> void:
 
 func _on_triton_button_pressed() -> void:
 	focus_point = triton_focus
+
+func _on_zoom_in_button_pressed() -> void:
+	camera.distance -= camera.scroll_zoom
+
+func _on_zoom_out_button_pressed() -> void:
+	camera.distance += camera.scroll_zoom

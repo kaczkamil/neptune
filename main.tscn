@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://prladdb578pl"]
+[gd_scene load_steps=20 format=3 uid="uid://prladdb578pl"]
 
 [ext_resource type="Script" uid="uid://cim84s0vfefjy" path="res://main.gd" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://bxq06g8g45hgo" path="res://util/focus_point/focus_point.gd" id="10_dg77c"]
 [ext_resource type="Theme" uid="uid://p8dvl1ygm0ri" path="res://theme.tres" id="10_efxa6"]
 [ext_resource type="Script" uid="uid://cipsb003ppwfj" path="res://util/data_table.gd" id="13_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://blslsk2mubdi4" path="res://icons/zoom-in.svg" id="14_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://mujn2gjuh5co" path="res://icons/zoom-out.svg" id="15_yaehf"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
@@ -101,20 +103,36 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="TimeControlContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
+[node name="BottomControlContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer2/TimeControlContainer"]
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer2/BottomControlContainer"]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 
-[node name="TimeControl" parent="CanvasLayer/MarginContainer2/TimeControlContainer/Panel" instance=ExtResource("9_kek77")]
+[node name="TimeControl" parent="CanvasLayer/MarginContainer2/BottomControlContainer/Panel" instance=ExtResource("9_kek77")]
 layout_mode = 1
 time_scale_max = 10.0
 time_scale_step = 0.1
+
+[node name="ZoomButtonContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2/BottomControlContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ZoomInButton" type="Button" parent="CanvasLayer/MarginContainer2/BottomControlContainer/ZoomButtonContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("14_2cqfq")
+icon_alignment = 1
+
+[node name="ZoomOutButton" type="Button" parent="CanvasLayer/MarginContainer2/BottomControlContainer/ZoomButtonContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("15_yaehf")
+icon_alignment = 1
 
 [node name="BodyInfoContainer" type="Control" parent="CanvasLayer/MarginContainer2"]
 unique_name_in_owner = true
@@ -323,7 +341,9 @@ text = "Neso"
 layout_mode = 2
 text = "S/2021 N 1"
 
-[connection signal="changed" from="CanvasLayer/MarginContainer2/TimeControlContainer/Panel/TimeControl" to="." method="_on_time_control_changed"]
+[connection signal="changed" from="CanvasLayer/MarginContainer2/BottomControlContainer/Panel/TimeControl" to="." method="_on_time_control_changed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BottomControlContainer/ZoomButtonContainer/ZoomInButton" to="." method="_on_zoom_in_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BottomControlContainer/ZoomButtonContainer/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/NeptuneButton" to="." method="_on_neptune_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/TritonButton" to="." method="_on_triton_button_pressed"]
