@@ -21,7 +21,7 @@ All space dimensions in this project will be represented as follows: 1 mm (megam
 	[_] S/2021 N 1
 [_] Cicular orbits
 	[X] Planet rotation
-	[_] Time controls
+	[X] Time controls
 	[_] Orbit display
 [_] Click to switch focused body
 [_] Planet descriptions
