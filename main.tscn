@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://prladdb578pl"]
+[gd_scene load_steps=33 format=3 uid="uid://prladdb578pl"]
 
 [ext_resource type="Script" uid="uid://cim84s0vfefjy" path="res://main.gd" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
@@ -13,19 +13,44 @@
 [ext_resource type="PackedScene" uid="uid://7xbv0g2jcs2c" path="res://util/time_control/time_control.tscn" id="9_kek77"]
 [ext_resource type="Script" uid="uid://bxq06g8g45hgo" path="res://util/focus_point/focus_point.gd" id="10_dg77c"]
 [ext_resource type="Theme" uid="uid://p8dvl1ygm0ri" path="res://theme.tres" id="10_efxa6"]
+[ext_resource type="Resource" uid="uid://tm2mfpqfux15" path="res://body/naiad/naiad_info.tres" id="11_cegan"]
+[ext_resource type="Resource" uid="uid://c2kkcm5h02ref" path="res://body/triton/triton_info.tres" id="12_cegan"]
+[ext_resource type="Resource" uid="uid://dstydqs625h6c" path="res://body/thalassa/thalassa_info.tres" id="13_074og"]
+[ext_resource type="Resource" uid="uid://c5awww3obl2ye" path="res://body/proteus/proteus_info.tres" id="13_82xsv"]
+[ext_resource type="Resource" uid="uid://briw06essdgw4" path="res://body/despina/despina_info.tres" id="13_getpj"]
 [ext_resource type="Script" uid="uid://cipsb003ppwfj" path="res://util/data_table.gd" id="13_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://blslsk2mubdi4" path="res://icons/zoom-in.svg" id="14_2cqfq"]
+[ext_resource type="Resource" uid="uid://bcx1mrptknune" path="res://body/larissa/larissa_info.tres" id="15_d13ii"]
 [ext_resource type="Texture2D" uid="uid://mujn2gjuh5co" path="res://icons/zoom-out.svg" id="15_yaehf"]
+[ext_resource type="Resource" uid="uid://dt58r5iyrle64" path="res://body/galatea/galatea_info.tres" id="17_ryguw"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_kek77"]
-size = Vector2(708, 708)
+[sub_resource type="PlaneMesh" id="PlaneMesh_82xsv"]
+size = Vector2(96.449, 96.449)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 render_priority = 0
 shader = ExtResource("6_7mycd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2cqfq"]
+size = Vector2(100.149, 100.149)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ryguw"]
+size = Vector2(105.052, 105.052)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d13ii"]
+size = Vector2(123.905, 123.905)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1u8w0"]
+size = Vector2(147.097, 147.097)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_getpj"]
+size = Vector2(235.294, 235.294)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kek77"]
+size = Vector2(708, 708)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_4c57u")
@@ -49,11 +74,6 @@ generate_at_origin = false
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.923806, 0, 0.382861, 0, 1, 0, -0.382861, 0, 0.923806, 0, 0, 0)
 
-[node name="Camera" parent="." instance=ExtResource("4_1bvp3")]
-unique_name_in_owner = true
-transform = Transform3D(0.920505, -0.0170434, 0.390359, 0, 0.999048, 0.0436194, -0.390731, -0.0401519, 0.919629, 0, 0, 0)
-scroll_zoom = 10.0
-
 [node name="DefaultFocusPoint" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.960016, 0, 0.279946, 0, 1, 0, -0.279946, 0, 0.960016, 0, 0, 0)
@@ -69,6 +89,146 @@ script = ExtResource("10_dg77c")
 view_distance = 100.0
 info = ExtResource("8_w48qg")
 
+[node name="NaiadOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.996493, -0.0836778, 0, 0.0836778, 0.996493, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NaiadOrbit"]
+mesh = SubResource("PlaneMesh_82xsv")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="NaiadOrbit"]
+script = ExtResource("7_5vw27")
+period = 25435.8
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="PlaceholderNaiad" type="CSGSphere3D" parent="NaiadOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.225, 0, 0)
+radius = 0.08
+
+[node name="NaiadFocusPoint" type="Node3D" parent="NaiadOrbit/CircularRotator/PlaceholderNaiad"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 1.6
+info = ExtResource("11_cegan")
+
+[node name="ThalassaOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.93358, -0.358368, 0, 0.358368, 0.93358, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ThalassaOrbit"]
+mesh = SubResource("PlaneMesh_2cqfq")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="ThalassaOrbit"]
+script = ExtResource("7_5vw27")
+period = 26912.0
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="PlaceholderThalassa" type="CSGSphere3D" parent="ThalassaOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.075, 0, 0)
+radius = 0.1
+
+[node name="ThalassaFocusPoint" type="Node3D" parent="ThalassaOrbit/CircularRotator/PlaceholderThalassa"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 2.0
+info = ExtResource("13_074og")
+
+[node name="DespinaOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.999994, -0.00349065, 0, 0.00349065, 0.999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="DespinaOrbit"]
+mesh = SubResource("PlaneMesh_ryguw")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="DespinaOrbit"]
+script = ExtResource("7_5vw27")
+period = 28914.2
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="DespinaOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.526, 0, 0)
+radius = 0.14
+
+[node name="DespinaFocusPoint" type="Node3D" parent="DespinaOrbit/CircularRotator/CSGSphere3D"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 6.0
+info = ExtResource("13_getpj")
+metadata/_custom_type_script = "uid://bxq06g8g45hgo"
+
+[node name="GalateaOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="GalateaOrbit"]
+mesh = SubResource("PlaneMesh_d13ii")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="GalateaOrbit"]
+script = ExtResource("7_5vw27")
+period = 37043.5
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="GalateaOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.953, 0, 0)
+radius = 0.1
+
+[node name="GalateaFocusPoint" type="Node3D" parent="GalateaOrbit/CircularRotator/CSGSphere3D"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 5.0
+info = ExtResource("17_ryguw")
+metadata/_custom_type_script = "uid://bxq06g8g45hgo"
+
+[node name="LarissaOrbit" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="LarissaOrbit"]
+mesh = SubResource("PlaneMesh_1u8w0")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="LarissaOrbit"]
+script = ExtResource("7_5vw27")
+period = 47922.0
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="LarissaOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.548, 0, 0)
+radius = 0.1
+
+[node name="LarissaFocusPoint" type="Node3D" parent="LarissaOrbit/CircularRotator/CSGSphere3D"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 5.0
+info = ExtResource("15_d13ii")
+metadata/_custom_type_script = "uid://bxq06g8g45hgo"
+
+[node name="ProteusOrbit" type="Node3D" parent="."]
+transform = Transform3D(0.999962, -0.00872654, 0, 0.00872654, 0.999962, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ProteusOrbit"]
+mesh = SubResource("PlaneMesh_getpj")
+skeleton = NodePath("../../TritonOrbit")
+surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
+
+[node name="CircularRotator" type="Node3D" parent="ProteusOrbit"]
+script = ExtResource("7_5vw27")
+period = 96968.0
+metadata/_custom_type_script = "uid://dni4taamws0q8"
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="ProteusOrbit/CircularRotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.647, 0, 0)
+
+[node name="ProteusFocusPoint" type="Node3D" parent="ProteusOrbit/CircularRotator/CSGSphere3D"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 5.0
+info = ExtResource("13_82xsv")
+metadata/_custom_type_script = "uid://bxq06g8g45hgo"
+
 [node name="TritonOrbit" type="Node3D" parent="."]
 transform = Transform3D(0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 0, 0, 1, 0, 0, 0)
 
@@ -78,7 +238,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_4c57u")
 
 [node name="CircularRotator" type="Node3D" parent="TritonOrbit"]
 script = ExtResource("7_5vw27")
-period = 120.0
+period = -507760.0
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
 [node name="Triton" parent="TritonOrbit/CircularRotator" instance=ExtResource("5_lquwl")]
@@ -88,6 +248,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 354, 0, 0)
 unique_name_in_owner = true
 script = ExtResource("10_dg77c")
 view_distance = 10.0
+info = ExtResource("12_cegan")
+
+[node name="Camera" parent="." instance=ExtResource("4_1bvp3")]
+unique_name_in_owner = true
+transform = Transform3D(0.920505, -0.0170434, 0.390359, 0, 0.999048, 0.0436194, -0.390731, -0.0401519, 0.919629, 0, 0, 0)
+scroll_zoom = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -139,7 +305,6 @@ icon_alignment = 1
 
 [node name="BodyInfoContainer" type="Control" parent="CanvasLayer/MarginContainer2"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 mouse_filter = 2
 
@@ -174,11 +339,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -187,11 +348,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="RichDescriptionLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="RichDescriptionLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -264,6 +421,7 @@ autowrap_mode = 3
 
 [node name="BodySelectPanel" type="ScrollContainer" parent="CanvasLayer/MarginContainer2"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -279,18 +437,20 @@ alignment = 1
 layout_mode = 2
 text = "Neptun"
 
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+
 [node name="NaiadButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
-text = "Naiad
-"
+text = "Najada"
 
 [node name="ThalassaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
-text = "Thalassa"
+text = "Talassa"
 
 [node name="DespinaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
-text = "Despina"
+text = "Despoina"
 
 [node name="GalateaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
@@ -301,46 +461,58 @@ layout_mode = 2
 text = "Larissa"
 
 [node name="HippocampButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Hippocamp"
 
 [node name="ProteusButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
-text = "Proteus"
+text = "Proteusz"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
 
 [node name="TritonButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
 layout_mode = 2
-text = "Triton"
+text = "Tryton"
 
 [node name="NereidButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Nereid"
 
 [node name="HalimedeButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Halimede"
 
 [node name="SaoButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Sao"
 
 [node name="S2002Button" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = " S/2002 N 5"
 
 [node name="LaomedeiaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Laomedeia"
 
 [node name="PsamatheButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Psamathe"
 
 [node name="NesoButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Neso"
 
 [node name="S2021Button" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "S/2021 N 1"
 
@@ -349,4 +521,10 @@ text = "S/2021 N 1"
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BottomControlContainer/ZoomButtonContainer/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/NeptuneButton" to="." method="_on_neptune_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/NaiadButton" to="." method="_on_naiad_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/ThalassaButton" to="." method="_on_thalassa_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/DespinaButton" to="." method="_on_despina_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/GalateaButton" to="." method="_on_galatea_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/LarissaButton" to="." method="_on_larissa_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/ProteusButton" to="." method="_on_proteus_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/TritonButton" to="." method="_on_triton_button_pressed"]

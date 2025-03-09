@@ -29,7 +29,22 @@ extends Node3D
 
 @onready var default_focus: FocusPoint = %DefaultFocusPoint
 @onready var neptune_focus: FocusPoint = %NeptuneFocusPoint
+@onready var naiad_focus: FocusPoint = %NaiadFocusPoint
+@onready var thalassa_focus: FocusPoint = %ThalassaFocusPoint
+@onready var despina_focus: FocusPoint = %DespinaFocusPoint
+@onready var galatea_focus: FocusPoint = %GalateaFocusPoint
+@onready var larissa_focus: FocusPoint = %LarissaFocusPoint
+# hippocamp
+@onready var proteus_focus: FocusPoint = %ProteusFocusPoint
 @onready var triton_focus: FocusPoint = %TritonFocusPoint
+# nereid
+# halimede
+# sao
+# s/2002
+# laomedeia
+# psamathe
+# neso
+# s/2021
 
 func _ready() -> void:
 	focus_point = default_focus
@@ -59,6 +74,24 @@ func _on_back_button_pressed() -> void:
 
 func _on_neptune_button_pressed() -> void:
 	focus_point = neptune_focus
+
+func _on_naiad_button_pressed() -> void:
+	focus_point = naiad_focus
+
+func _on_thalassa_button_pressed() -> void:
+	focus_point = thalassa_focus
+
+func _on_despina_button_pressed() -> void:
+	focus_point = despina_focus
+
+func _on_galatea_button_pressed() -> void:
+	focus_point = galatea_focus
+
+func _on_larissa_button_pressed() -> void:
+	focus_point = larissa_focus
+
+func _on_proteus_button_pressed() -> void:
+	focus_point = proteus_focus
 
 func _on_triton_button_pressed() -> void:
 	focus_point = triton_focus

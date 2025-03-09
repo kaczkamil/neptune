@@ -11,20 +11,13 @@ All space dimensions in this project will be represented as follows: 1 mm (megam
 	[_] Hippocamp
 	[_] Proteus
 	[X] Triton
-	[_] Nereid
-	[_] Halimede
-	[_] Sao
-	[_] S/2002 N 5
-	[_] Laomedeia
-	[_] Psamathe
-	[_] Neso
-	[_] S/2021 N 1
-[_] Cicular orbits
+[X] Cicular orbits
 	[X] Planet rotation
 	[X] Time controls
-	[_] Orbit display
-[_] Click to switch focused body
+	[X] Orbit display
 [_] Planet descriptions
+[_] Distance adjusted zoom
+[_] Welcome screen
 
 # Credits
 Texture sources

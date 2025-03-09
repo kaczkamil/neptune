@@ -14,7 +14,7 @@ Oto Neptun, ósma i zarazem najdalsza od słońca planeta Układu Słonecznego.
 
 Neptun składa się głównie z gazów i cieczy.
 
-Neptun nigdy nie jest widoczny z Ziemi gołym okiem. Jest również jedyną planetą Układu Słonecznego której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych."
+Neptun nigdy nie jest widoczny gołym okiem z Ziemi. Jest również jedyną planetą Układu Słonecznego której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych."
 data = Dictionary[String, String]({
 "Przyspieszenie grawitacyjne (powierzchnia)": "11.5 m/s^2     (1.137)",
 "Prędkość ucieczki": "23.5 km/s     (2.1)",

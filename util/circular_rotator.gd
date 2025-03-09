@@ -8,9 +8,11 @@ class_name CircularRotator
 @onready var time_manager: TimeManager = _get_time_manager()
 
 func _get_time_manager() -> TimeManager:
-	for child in get_tree().current_scene.get_children():
-		if child is TimeManager:
-			return child
+	var current_scene = get_tree().current_scene
+	if current_scene != null:
+		for child in current_scene.get_children():
+			if child is TimeManager:
+				return child
 	return null
 
 func _update_position():
