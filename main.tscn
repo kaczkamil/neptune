@@ -1,15 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://prladdb578pl"]
+[gd_scene load_steps=18 format=3 uid="uid://prladdb578pl"]
 
 [ext_resource type="Script" uid="uid://cim84s0vfefjy" path="res://main.gd" id="1_4c57u"]
 [ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b0nt4n13a6448" path="res://addons/starlight/Stars.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://c26q2ae7dl5ya" path="res://util/distanced_star_generator.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://daoi7ht5h2nc2" path="res://body/neptune/neptune.glb" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://blr18b47ybb2a" path="res://body/triton/triton.glb" id="5_lquwl"]
 [ext_resource type="Shader" uid="uid://57lcolu6kso5" path="res://body/orbit.gdshader" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://dni4taamws0q8" path="res://util/circular_rotator.gd" id="7_5vw27"]
+[ext_resource type="Resource" uid="uid://cmkknc0qu4hyh" path="res://body/neptune/neptune_info.tres" id="8_w48qg"]
 [ext_resource type="PackedScene" uid="uid://7xbv0g2jcs2c" path="res://util/time_control/time_control.tscn" id="9_kek77"]
+[ext_resource type="Script" uid="uid://bxq06g8g45hgo" path="res://util/focus_point/focus_point.gd" id="10_dg77c"]
+[ext_resource type="Theme" uid="uid://p8dvl1ygm0ri" path="res://theme.tres" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://cipsb003ppwfj" path="res://util/data_table.gd" id="13_ycdy4"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
@@ -43,12 +47,25 @@ generate_at_origin = false
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.923806, 0, 0.382861, 0, 1, 0, -0.382861, 0, 0.923806, 0, 0, 0)
 
-[node name="TargetedRotatableCamera3D" parent="." instance=ExtResource("4_1bvp3")]
-distance = 100.0
+[node name="Camera" parent="." instance=ExtResource("4_1bvp3")]
+unique_name_in_owner = true
+transform = Transform3D(0.920505, -0.0170434, 0.390359, 0, 0.999048, 0.0436194, -0.390731, -0.0401519, 0.919629, 0, 0, 0)
 scroll_zoom = 10.0
+
+[node name="DefaultFocusPoint" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.960016, 0, 0.279946, 0, 1, 0, -0.279946, 0, 0.960016, 0, 0, 0)
+script = ExtResource("10_dg77c")
+view_distance = 550.0
 
 [node name="Neptune" parent="." instance=ExtResource("4_7mycd")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="NeptuneFocusPoint" type="Node3D" parent="Neptune"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 100.0
+info = ExtResource("8_w48qg")
 
 [node name="TritonOrbit" type="Node3D" parent="."]
 transform = Transform3D(0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 0, 0, 1, 0, 0, 0)
@@ -65,21 +82,70 @@ metadata/_custom_type_script = "uid://dni4taamws0q8"
 [node name="Triton" parent="TritonOrbit/CircularRotator" instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 354, 0, 0)
 
+[node name="TritonFocusPoint" type="Node3D" parent="TritonOrbit/CircularRotator/Triton"]
+unique_name_in_owner = true
+script = ExtResource("10_dg77c")
+view_distance = 10.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_efxa6")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TimeControlContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer2/TimeControlContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+
+[node name="TimeControl" parent="CanvasLayer/MarginContainer2/TimeControlContainer/Panel" instance=ExtResource("9_kek77")]
+layout_mode = 1
+time_scale_max = 10.0
+time_scale_step = 0.1
+
+[node name="BodyInfoContainer" type="Control" parent="CanvasLayer/MarginContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/MarginContainer2/BodyInfoContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_right = 51.0
+offset_bottom = 39.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+text = "Neptun"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer2/BodyInfoContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+size_flags_horizontal = 0
 
-[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
-custom_minimum_size = Vector2(260, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,66 +153,177 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"HeaderMedium"
-text = "Neptun"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_type_variation = &"TooltipLabel"
-theme_override_font_sizes/font_size = 13
-text = "Oto Neptun, ósma i zarazem najdalsza planeta Układu Słonecznego.
-
-Jej nazwa pochodzi od rzymskiego boga mórz - Neptuna.
-
-Odkryty 23 września 1846 Neptun jest jedyną planetą Układu Słonecznego, której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych."
-autowrap_mode = 3
-
-[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "Powrót"
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -40.0
-offset_right = 150.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(300, 30)
+[node name="RichDescriptionLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]
+[img width=100%]media/neptune_voyager_2.jpg[/img]
+[i][color=gray]Zdjęcie Neptuna zrobione przez Voyagera 2[/color][/i]
+[/center]
 
-[node name="TimeControl" parent="CanvasLayer/MarginContainer2/HBoxContainer/Panel" instance=ExtResource("9_kek77")]
+Oto Neptun, ósma i zarazem najdalsza od słońca planeta Układu Słonecznego.
+
+Neptun składa się głównie z gazów i cieczy.
+
+Neptun nie jest widoczny z Ziemi gołym okiem i jest  jest jedyną planetą Układu Słonecznego, której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych."
+
+[node name="BackButton" type="Button" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Powrót"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/MarginContainer2/BodyInfoContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-time_scale_max = 10.0
-time_scale_step = 0.1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
 
-[connection signal="changed" from="CanvasLayer/MarginContainer2/HBoxContainer/Panel/TimeControl" to="." method="_on_time_control_changed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="DataContainer" type="GridContainer" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 20
+columns = 2
+script = ExtResource("13_ycdy4")
+metadata/_custom_type_script = "uid://cipsb003ppwfj"
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.431373)
+text = "Wartości podane w nawiasach to proporcja podanej wartości do odpowiedniej wartości dla Ziemi"
+autowrap_mode = 3
+
+[node name="BodySelectPanel" type="ScrollContainer" parent="CanvasLayer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2/BodySelectPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="NeptuneButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Neptun"
+
+[node name="NaiadButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Naiad
+"
+
+[node name="ThalassaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Thalassa"
+
+[node name="DespinaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Despina"
+
+[node name="GalateaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Galatea"
+
+[node name="LarissaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Larissa"
+
+[node name="HippocampButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Hippocamp"
+
+[node name="ProteusButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Proteus"
+
+[node name="TritonButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Triton"
+
+[node name="NereidButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Nereid"
+
+[node name="HalimedeButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Halimede"
+
+[node name="SaoButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Sao"
+
+[node name="S2002Button" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = " S/2002 N 5"
+
+[node name="LaomedeiaButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Laomedeia"
+
+[node name="PsamatheButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Psamathe"
+
+[node name="NesoButton" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Neso"
+
+[node name="S2021Button" type="Button" parent="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "S/2021 N 1"
+
+[connection signal="changed" from="CanvasLayer/MarginContainer2/TimeControlContainer/Panel/TimeControl" to="." method="_on_time_control_changed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/NeptuneButton" to="." method="_on_neptune_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/BodySelectPanel/VBoxContainer/TritonButton" to="." method="_on_triton_button_pressed"]

@@ -14,7 +14,7 @@ void fragment() {
 		float line_distance_a = (RADIUS - dist) / (WIDTH);
 		float line_distance_b = (RADIUS - dist - WIDTH) / (WIDTH);
 		float a = line_distance < 0.5? line_distance_a: line_distance_b;
-		
+
 		ALBEDO = vec3(1.0, 1.0, 1.0);
 		EMISSION = vec3(a, a, a);
 		ALPHA = 0.5;
