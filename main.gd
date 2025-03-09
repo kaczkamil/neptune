@@ -8,7 +8,7 @@ extends Node3D
 		body_select_panel.hide()
 		
 		if focus_point is FocusPoint:
-			camera.distance = focus_point.view_distance
+			camera.set_distance_animated(focus_point.view_distance)
 			
 			if focus_point.info != null:
 				info_container.show()
