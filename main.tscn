@@ -1,28 +1,40 @@
-[gd_scene load_steps=33 format=3 uid="uid://prladdb578pl"]
+[gd_scene load_steps=45 format=3 uid="uid://prladdb578pl"]
 
 [ext_resource type="Script" uid="uid://cim84s0vfefjy" path="res://main.gd" id="1_4c57u"]
-[ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
+[ext_resource type="Script" path="res://util/time_manager.gd" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b0nt4n13a6448" path="res://addons/starlight/Stars.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://c26q2ae7dl5ya" path="res://util/distanced_star_generator.gd" id="4_4c57u"]
+[ext_resource type="Script" path="res://util/distanced_star_generator.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://daoi7ht5h2nc2" path="res://body/neptune/neptune.glb" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://blr18b47ybb2a" path="res://body/triton/triton.glb" id="5_lquwl"]
 [ext_resource type="Shader" uid="uid://57lcolu6kso5" path="res://body/orbit.gdshader" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://dni4taamws0q8" path="res://util/circular_rotator.gd" id="7_5vw27"]
 [ext_resource type="Resource" uid="uid://cmkknc0qu4hyh" path="res://body/neptune/neptune_info.tres" id="8_w48qg"]
 [ext_resource type="PackedScene" uid="uid://7xbv0g2jcs2c" path="res://util/time_control/time_control.tscn" id="9_kek77"]
+[ext_resource type="Material" uid="uid://sm0boyfq5yvh" path="res://body/naiad/naiad_material.tres" id="10_0rl1p"]
 [ext_resource type="Script" uid="uid://bxq06g8g45hgo" path="res://util/focus_point/focus_point.gd" id="10_dg77c"]
 [ext_resource type="Theme" uid="uid://p8dvl1ygm0ri" path="res://theme.tres" id="10_efxa6"]
 [ext_resource type="Resource" uid="uid://tm2mfpqfux15" path="res://body/naiad/naiad_info.tres" id="11_cegan"]
+[ext_resource type="ArrayMesh" uid="uid://cy7b2bweowd61" path="res://body/naiad/naiad.obj" id="11_ok6jj"]
+[ext_resource type="Material" uid="uid://dvtplt7btlrf7" path="res://body/despina/despina_material.tres" id="12_0odxb"]
 [ext_resource type="Resource" uid="uid://c2kkcm5h02ref" path="res://body/triton/triton_info.tres" id="12_cegan"]
 [ext_resource type="Resource" uid="uid://dstydqs625h6c" path="res://body/thalassa/thalassa_info.tres" id="13_074og"]
 [ext_resource type="Resource" uid="uid://c5awww3obl2ye" path="res://body/proteus/proteus_info.tres" id="13_82xsv"]
+[ext_resource type="Material" uid="uid://w86kaq8gc643" path="res://body/thalassa/thalassa_material.tres" id="13_facbu"]
 [ext_resource type="Resource" uid="uid://briw06essdgw4" path="res://body/despina/despina_info.tres" id="13_getpj"]
-[ext_resource type="Script" uid="uid://cipsb003ppwfj" path="res://util/data_table.gd" id="13_ycdy4"]
+[ext_resource type="ArrayMesh" uid="uid://bxc8bncwomc0y" path="res://body/despina/despina.obj" id="13_lswn8"]
+[ext_resource type="Script" path="res://util/data_table.gd" id="13_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://blslsk2mubdi4" path="res://icons/zoom-in.svg" id="14_2cqfq"]
+[ext_resource type="ArrayMesh" uid="uid://cbd24d8ih85l1" path="res://body/thalassa/thalassa.obj" id="14_b1qrp"]
 [ext_resource type="Resource" uid="uid://bcx1mrptknune" path="res://body/larissa/larissa_info.tres" id="15_d13ii"]
 [ext_resource type="Texture2D" uid="uid://mujn2gjuh5co" path="res://icons/zoom-out.svg" id="15_yaehf"]
 [ext_resource type="Resource" uid="uid://dt58r5iyrle64" path="res://body/galatea/galatea_info.tres" id="17_ryguw"]
+[ext_resource type="Material" uid="uid://3hbbm04happ1" path="res://body/galatea/galatea_material.tres" id="19_come4"]
+[ext_resource type="ArrayMesh" uid="uid://krbp24ueo42v" path="res://body/galatea/galatea.obj" id="20_h8e4i"]
+[ext_resource type="Material" uid="uid://degadusih2tvd" path="res://body/larissa/larissa_material.tres" id="22_4lmeg"]
+[ext_resource type="ArrayMesh" uid="uid://co3p375b0ddoi" path="res://body/larissa/larissa.obj" id="23_0cp0l"]
+[ext_resource type="Material" uid="uid://c5g3vr123fvf8" path="res://body/proteus/proteus_material.tres" id="25_d2t1y"]
+[ext_resource type="ArrayMesh" uid="uid://d1bjqxudbabr0" path="res://body/proteus/proteus.obj" id="26_gngh3"]
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_energy_multiplier = 0.0
@@ -61,7 +73,6 @@ environment = SubResource("Environment_1bvp3")
 [node name="TimeManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_5vw27")
-metadata/_custom_type_script = "uid://c02xus8vik0dy"
 
 [node name="Stars" parent="." instance=ExtResource("2_h2yge")]
 script = ExtResource("4_4c57u")
@@ -102,12 +113,14 @@ script = ExtResource("7_5vw27")
 period = 25435.8
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="PlaceholderNaiad" type="CSGSphere3D" parent="NaiadOrbit/CircularRotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.225, 0, 0)
-radius = 0.08
+[node name="Naiad" type="MeshInstance3D" parent="NaiadOrbit/CircularRotator"]
+transform = Transform3D(0.996493, 0.0836778, 0, -0.0836778, 0.996493, 0, 0, 0, 1, 48.225, 0, 0)
+material_override = ExtResource("10_0rl1p")
+mesh = ExtResource("11_ok6jj")
 
-[node name="NaiadFocusPoint" type="Node3D" parent="NaiadOrbit/CircularRotator/PlaceholderNaiad"]
+[node name="NaiadFocusPoint" type="Node3D" parent="NaiadOrbit/CircularRotator/Naiad"]
 unique_name_in_owner = true
+transform = Transform3D(0.996493, -0.0836778, 0, 0.0836778, 0.996493, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
 view_distance = 1.6
 info = ExtResource("11_cegan")
@@ -125,12 +138,15 @@ script = ExtResource("7_5vw27")
 period = 26912.0
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="PlaceholderThalassa" type="CSGSphere3D" parent="ThalassaOrbit/CircularRotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.075, 0, 0)
-radius = 0.1
+[node name="Thalassa" type="MeshInstance3D" parent="ThalassaOrbit/CircularRotator"]
+transform = Transform3D(0.933581, 0.358368, 0, -0.358368, 0.933581, 0, 0, 0, 1, 50.075, 0, 0)
+material_override = ExtResource("13_facbu")
+mesh = ExtResource("14_b1qrp")
+skeleton = NodePath("../..")
 
-[node name="ThalassaFocusPoint" type="Node3D" parent="ThalassaOrbit/CircularRotator/PlaceholderThalassa"]
+[node name="ThalassaFocusPoint" type="Node3D" parent="ThalassaOrbit/CircularRotator/Thalassa"]
 unique_name_in_owner = true
+transform = Transform3D(0.93358, -0.358368, 0, 0.358368, 0.93358, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
 view_distance = 2.0
 info = ExtResource("13_074og")
@@ -148,12 +164,14 @@ script = ExtResource("7_5vw27")
 period = 28914.2
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="DespinaOrbit/CircularRotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.526, 0, 0)
-radius = 0.14
+[node name="Despina" type="MeshInstance3D" parent="DespinaOrbit/CircularRotator"]
+transform = Transform3D(0.999994, 0.00349065, 0, -0.00349065, 0.999994, 0, 0, 0, 1, 52.526, 0, 0)
+material_override = ExtResource("12_0odxb")
+mesh = ExtResource("13_lswn8")
 
-[node name="DespinaFocusPoint" type="Node3D" parent="DespinaOrbit/CircularRotator/CSGSphere3D"]
+[node name="DespinaFocusPoint" type="Node3D" parent="DespinaOrbit/CircularRotator/Despina"]
 unique_name_in_owner = true
+transform = Transform3D(0.999994, -0.00349065, 0, 0.00349065, 0.999994, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
 view_distance = 6.0
 info = ExtResource("13_getpj")
@@ -172,12 +190,14 @@ script = ExtResource("7_5vw27")
 period = 37043.5
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="GalateaOrbit/CircularRotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.953, 0, 0)
-radius = 0.1
+[node name="Galatea" type="MeshInstance3D" parent="GalateaOrbit/CircularRotator"]
+transform = Transform3D(0.999999, 0.00174533, 0, -0.00174533, 0.999999, 0, 0, 0, 1, 61.953, 0, 0)
+material_override = ExtResource("19_come4")
+mesh = ExtResource("20_h8e4i")
 
-[node name="GalateaFocusPoint" type="Node3D" parent="GalateaOrbit/CircularRotator/CSGSphere3D"]
+[node name="GalateaFocusPoint" type="Node3D" parent="GalateaOrbit/CircularRotator/Galatea"]
 unique_name_in_owner = true
+transform = Transform3D(0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
 view_distance = 5.0
 info = ExtResource("17_ryguw")
@@ -195,11 +215,12 @@ script = ExtResource("7_5vw27")
 period = 47922.0
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="LarissaOrbit/CircularRotator"]
+[node name="Larissa" type="MeshInstance3D" parent="LarissaOrbit/CircularRotator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.548, 0, 0)
-radius = 0.1
+material_override = ExtResource("22_4lmeg")
+mesh = ExtResource("23_0cp0l")
 
-[node name="LarissaFocusPoint" type="Node3D" parent="LarissaOrbit/CircularRotator/CSGSphere3D"]
+[node name="LarissaFocusPoint" type="Node3D" parent="LarissaOrbit/CircularRotator/Larissa"]
 unique_name_in_owner = true
 script = ExtResource("10_dg77c")
 view_distance = 5.0
@@ -219,11 +240,14 @@ script = ExtResource("7_5vw27")
 period = 96968.0
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="ProteusOrbit/CircularRotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.647, 0, 0)
+[node name="Proteus" type="MeshInstance3D" parent="ProteusOrbit"]
+transform = Transform3D(0.999962, 0.00872654, 0, -0.00872654, 0.999962, 0, 0, 0, 1, 117.647, 0, 0)
+material_override = ExtResource("25_d2t1y")
+mesh = ExtResource("26_gngh3")
 
-[node name="ProteusFocusPoint" type="Node3D" parent="ProteusOrbit/CircularRotator/CSGSphere3D"]
+[node name="ProteusFocusPoint" type="Node3D" parent="ProteusOrbit/Proteus"]
 unique_name_in_owner = true
+transform = Transform3D(0.999962, -0.00872654, 0, 0.00872654, 0.999962, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
 view_distance = 5.0
 info = ExtResource("13_82xsv")
@@ -411,7 +435,6 @@ size_flags_vertical = 3
 theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("13_ycdy4")
-metadata/_custom_type_script = "uid://cipsb003ppwfj"
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer2/BodyInfoContainer/Panel2/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
