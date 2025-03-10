@@ -26,6 +26,7 @@ extends Node3D
 @onready var info_description_label := %RichDescriptionLabel
 @onready var info_data_table := %DataContainer
 @onready var body_select_panel := %BodySelectPanel
+@onready var time_control := %TimeControl
 
 @onready var default_focus: FocusPoint = %DefaultFocusPoint
 @onready var neptune_focus: FocusPoint = %NeptuneFocusPoint
@@ -48,6 +49,8 @@ extends Node3D
 
 func _ready() -> void:
 	focus_point = default_focus
+	time_manager.playing = time_control.playing
+	time_manager.time_scale = 10 ** time_control.time_scale
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():

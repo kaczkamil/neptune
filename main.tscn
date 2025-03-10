@@ -240,12 +240,13 @@ script = ExtResource("7_5vw27")
 period = 96968.0
 metadata/_custom_type_script = "uid://dni4taamws0q8"
 
-[node name="Proteus" type="MeshInstance3D" parent="ProteusOrbit"]
-transform = Transform3D(0.999962, 0.00872654, 0, -0.00872654, 0.999962, 0, 0, 0, 1, 117.647, 0, 0)
+[node name="Proteus" type="MeshInstance3D" parent="ProteusOrbit/CircularRotator"]
+transform = Transform3D(0.999962, 0.00872654, 0, -0.00872654, 0.999962, 0, 0, 0, 1, 117.647, -1.19209e-07, 0)
 material_override = ExtResource("25_d2t1y")
 mesh = ExtResource("26_gngh3")
+skeleton = NodePath("../..")
 
-[node name="ProteusFocusPoint" type="Node3D" parent="ProteusOrbit/Proteus"]
+[node name="ProteusFocusPoint" type="Node3D" parent="ProteusOrbit/CircularRotator/Proteus"]
 unique_name_in_owner = true
 transform = Transform3D(0.999962, -0.00872654, 0, 0.00872654, 0.999962, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("10_dg77c")
@@ -303,8 +304,9 @@ custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 
 [node name="TimeControl" parent="CanvasLayer/MarginContainer2/BottomControlContainer/Panel" instance=ExtResource("9_kek77")]
+unique_name_in_owner = true
 layout_mode = 1
-time_scale = 0.0
+time_scale = 3.0
 time_scale_min = 0.0
 time_scale_max = 5.0
 time_scale_step = 0.1
