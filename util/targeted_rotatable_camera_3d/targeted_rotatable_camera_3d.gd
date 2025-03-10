@@ -23,8 +23,6 @@ const DISTANCE_TRANSITION_TIME = 0.5
 		distance = max(v, 0)
 		camera.position.z = distance
 
-@export var scroll_zoom: float = 2.0
-
 @onready var camera: Camera3D = %Camera3D
 @onready var camera_origin: Node3D = %CameraOrigin
 
@@ -46,9 +44,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				distance -= scroll_zoom
+				zoom_in()
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				distance += scroll_zoom
+				zoom_out()
 
 func set_distance_animated(new_distance: float) -> void:
 	if _distance_transition_tween != null:
@@ -59,3 +57,9 @@ func set_distance_animated(new_distance: float) -> void:
 	await _distance_transition_tween.finished
 	
 	_distance_transition_tween = null
+
+func zoom_in() -> void:
+	distance *= 0.9
+
+func zoom_out() -> void:
+	distance *= 1.1

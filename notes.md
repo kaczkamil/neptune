@@ -16,7 +16,7 @@ All space dimensions in this project will be represented as follows: 1 mm (megam
 	[X] Time controls
 	[X] Orbit display
 [_] Planet descriptions
-[_] Distance adjusted zoom
+[X] Distance adjusted zoom
 [_] Welcome screen
 
 # Credits

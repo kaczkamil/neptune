@@ -1,10 +1,10 @@
 [gd_scene load_steps=45 format=3 uid="uid://prladdb578pl"]
 
 [ext_resource type="Script" uid="uid://cim84s0vfefjy" path="res://main.gd" id="1_4c57u"]
-[ext_resource type="Script" path="res://util/time_manager.gd" id="1_5vw27"]
+[ext_resource type="Script" uid="uid://c02xus8vik0dy" path="res://util/time_manager.gd" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b0nt4n13a6448" path="res://addons/starlight/Stars.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://5xssxeelxkgo" path="res://util/targeted_rotatable_camera_3d/targeted_rotatable_camera_3d.tscn" id="4_1bvp3"]
-[ext_resource type="Script" path="res://util/distanced_star_generator.gd" id="4_4c57u"]
+[ext_resource type="Script" uid="uid://c26q2ae7dl5ya" path="res://util/distanced_star_generator.gd" id="4_4c57u"]
 [ext_resource type="PackedScene" uid="uid://daoi7ht5h2nc2" path="res://body/neptune/neptune.glb" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://blr18b47ybb2a" path="res://body/triton/triton.glb" id="5_lquwl"]
 [ext_resource type="Shader" uid="uid://57lcolu6kso5" path="res://body/orbit.gdshader" id="6_7mycd"]
@@ -23,7 +23,7 @@
 [ext_resource type="Material" uid="uid://w86kaq8gc643" path="res://body/thalassa/thalassa_material.tres" id="13_facbu"]
 [ext_resource type="Resource" uid="uid://briw06essdgw4" path="res://body/despina/despina_info.tres" id="13_getpj"]
 [ext_resource type="ArrayMesh" uid="uid://bxc8bncwomc0y" path="res://body/despina/despina.obj" id="13_lswn8"]
-[ext_resource type="Script" path="res://util/data_table.gd" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://cipsb003ppwfj" path="res://util/data_table.gd" id="13_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://blslsk2mubdi4" path="res://icons/zoom-in.svg" id="14_2cqfq"]
 [ext_resource type="ArrayMesh" uid="uid://cbd24d8ih85l1" path="res://body/thalassa/thalassa.obj" id="14_b1qrp"]
 [ext_resource type="Resource" uid="uid://bcx1mrptknune" path="res://body/larissa/larissa_info.tres" id="15_d13ii"]
@@ -277,7 +277,6 @@ info = ExtResource("12_cegan")
 [node name="Camera" parent="." instance=ExtResource("4_1bvp3")]
 unique_name_in_owner = true
 transform = Transform3D(0.920505, -0.0170434, 0.390359, 0, 0.999048, 0.0436194, -0.390731, -0.0401519, 0.919629, 0, 0, 0)
-scroll_zoom = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
