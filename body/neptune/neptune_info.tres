@@ -10,12 +10,15 @@ description = "[center]
 [i][color=gray]Zdjęcie Neptuna wykonane przez Voyager'a 2[/color][/i]
 [/center]
 
-Oto Neptun, ósma i zarazem najdalsza od słońca planeta Układu Słonecznego.
+Oto Neptun, ósma i zarazem najdalsza od słońca planeta Układu Słonecznego. Jest to gazowy olbrzym o 17-krotnie większej masie niż Ziemia.
 
-Neptun składa się głównie z gazów i cieczy.
+Neptun nigdy nie jest widoczny gołym okiem z Ziemi. Jest również jedyną planetą Układu Słonecznego której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych.
 
-Neptun nigdy nie jest widoczny gołym okiem z Ziemi. Jest również jedyną planetą Układu Słonecznego której istnienie wykazano nie na podstawie obserwacji nieba, ale na drodze obliczeń matematycznych."
+Neptun został odwiedzony tylko przez jedną sondę kosmiczną - Voyager'a 2.
+
+Neptun ma 16 znanych księżyców, z których 7 można zaobserwować w tym projekcie. Największym z nich jest Tryton, który odpowiada za ponad 90% łącznej masy wszystkich księżyców Neptuna."
 data = Dictionary[String, String]({
+"Masa": " 1.024×10^26 kg     (17.15)",
 "Przyspieszenie grawitacyjne (powierzchnia)": "11.5 m/s^2     (1.137)",
 "Prędkość ucieczki": "23.5 km/s     (2.1)",
 "Półoś orbity wokół słońca": "30.7 AU",

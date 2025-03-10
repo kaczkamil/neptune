@@ -20,5 +20,9 @@ Widoczny obok model Trytona został wykonany przez NASA, za pomocą zdjęć wyko
 
 [b][u]Etymologia nazwy[/u][/b]
 Nazwa satelity pochodzi z mitologi greckiej od Trytona - syna Posejdona."
-data = Dictionary[String, String]({})
+data = Dictionary[String, String]({
+"Masa": "2.1389 × 10^22",
+"Półoś wielka": "354 759 km",
+"Średni promień": "1 353.4 km"
+})
 metadata/_custom_type_script = "uid://bspfic5yk2xu1"

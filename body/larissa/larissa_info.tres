@@ -22,5 +22,9 @@ W przeciwieństwie do większości wewnętrznych księżyców Neptuna, został d
 
 [b][u]Etymologia nazwy[/u][/b]
 Nazwa satelity pochodzi od nimfy Larissy - kochanki Posejdona z mitologii greckiej."
-data = Dictionary[String, String]({})
+data = Dictionary[String, String]({
+"Masa": "~[0.19–5.7] × 10^18 kg",
+"Półoś wielka": "73 548.26 km",
+"Średni promień": "97 km"
+})
 metadata/_custom_type_script = "uid://bspfic5yk2xu1"

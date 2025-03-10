@@ -38,3 +38,5 @@ func _add_label_pair(text1: String, text2: String) -> void:
 	
 	add_child(label1)
 	add_child(label2)
+	move_child(label1, 0)
+	move_child(label2, 1)

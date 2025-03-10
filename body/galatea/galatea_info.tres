@@ -22,5 +22,9 @@ Widoczny obok model księżyca jest jedynie przybliżeniem tego, jak faktyczny s
 
 [b][u]Etymologia nazwy[/u][/b]
 Nazwa satelity pochodzi od Galatei, jednej z pięćdziesięciu nereid z mitologii greckiej."
-data = Dictionary[String, String]({})
+data = Dictionary[String, String]({
+"Masa": "1.94 × 10^18 kg",
+"Półoś wielka": "61952.57 km",
+"Średni promień": "88 km"
+})
 metadata/_custom_type_script = "uid://bspfic5yk2xu1"

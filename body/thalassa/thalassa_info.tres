@@ -19,6 +19,8 @@ Widoczny obok model Talassy jest jedynie przybliżeniem tego, jak faktyczny sate
 [b][u]Etymologia nazwy[/u][/b]
 Nazwa satelity pochodzi od Talassy, córki Eteru i Hemery z mitologii greckiej. [i]Thalassa[/i] to również greckie określenie morza."
 data = Dictionary[String, String]({
-"Półoś orbity": "50 064 km"
+"Masa": "~3.54 × 10^17 kg",
+"Półoś wielka": "50 074.44 km",
+"Średni promień": "41 km"
 })
 metadata/_custom_type_script = "uid://bspfic5yk2xu1"

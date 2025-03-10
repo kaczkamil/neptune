@@ -18,5 +18,9 @@ Brak jest dokładniejszych zdjęć satelity. Widoczny obok model jest jedynie pr
 
 [b][u]Etymologia nazwy[/u][/b]
 Nazwa satelity pochodzi od najad - nimf wód lądowych - z mitologii greckiej."
-data = Dictionary[String, String]({})
+data = Dictionary[String, String]({
+"Masa": "~1.2 × 10^17 kg",
+"Półoś wielka": "48 224.41 km",
+"Średni promień": "33 km"
+})
 metadata/_custom_type_script = "uid://bspfic5yk2xu1"
