@@ -5,7 +5,7 @@ extends Node3D
 		focus_point = v
 		
 		info_container.hide()
-		body_select_panel.hide()
+		main_container.hide()
 		
 		if focus_point is FocusPoint:
 			camera.set_distance_animated(focus_point.view_distance)
@@ -14,7 +14,7 @@ extends Node3D
 				info_container.show()
 				_update_info_display(focus_point.info)
 			else:
-				body_select_panel.show()
+				main_container.show()
 			
 		camera.target = focus_point
 
@@ -25,7 +25,7 @@ extends Node3D
 @onready var info_name_label := %NameLabel
 @onready var info_description_label := %RichDescriptionLabel
 @onready var info_data_table := %DataContainer
-@onready var body_select_panel := %BodySelectPanel
+@onready var main_container := %MainContainer
 @onready var time_control := %TimeControl
 
 @onready var default_focus: FocusPoint = %DefaultFocusPoint

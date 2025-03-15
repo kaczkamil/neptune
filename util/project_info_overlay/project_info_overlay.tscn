@@ -1,0 +1,188 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxpin6mw36lwr"]
+
+[ext_resource type="Theme" uid="uid://p8dvl1ygm0ri" path="res://theme.tres" id="1_1hd4b"]
+[ext_resource type="Script" uid="uid://j80gqpyy5gyi" path="res://util/project_info_overlay/project_info_overlay.gd" id="2_bteh7"]
+[ext_resource type="Script" uid="uid://bljwpyfaoh8h2" path="res://util/project_info_overlay/uri_opener.gd" id="3_h26oh"]
+
+[sub_resource type="SystemFont" id="SystemFont_bteh7"]
+font_names = PackedStringArray("Monospace")
+
+[node name="ProjectInfoOverlay" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_1hd4b")
+color = Color(0, 0, 0, 0.392157)
+script = ExtResource("2_bteh7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -269.5
+offset_right = 345.0
+offset_bottom = 269.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CloseButton" type="Button" parent="Panel/MarginContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Neptun"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+tab_focus_mode = 0
+
+[node name="O projekcie" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/TabContainer/O projekcie"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+bbcode_enabled = true
+text = "Interaktywna, przestrzenna wizualizacja Neptuna oraz niektórych orbitujących go ciał. Stworzona przez [u]Kamila Kaczyńskiego[/u] i [u]Jakuba Kononowicza vel Siemionowicza[/u]."
+meta_underlined = false
+
+[node name="Źródła i Licencje" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Źródła i Licencje"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+theme_override_fonts/mono_font = SubResource("SystemFont_bteh7")
+bbcode_enabled = true
+text = "
+
+[center][b][u]Zdjęcia i modele 3D[/u][/b][/center]
+
+[b]Model 3D Neptuna i Trytona[/b]
+	NASA Visualization Technology Applications And Development (VTAD)
+	[i][url=https://www.nasa.gov/nasa-brand-center/images-and-media]Domena publiczna[/url][/i]
+[ul]
+ [url=https://science.nasa.gov/resource/neptune-3d-model]https://science.nasa.gov/resource/neptune-3d-model[/url]
+ [url=https://science.nasa.gov/resource/triton-3d-model]https://science.nasa.gov/resource/triton-3d-model[/url]
+[/ul]
+
+[b]Zdjęcia Naiady, Talassy, Despoiny, Galatei, Larissy i Proteusza[/b]
+	NASA
+	[i][url=https://www.nasa.gov/nasa-brand-center/images-and-media]Domena publiczna[/url][/i]
+[ul]
+ [url=https://science.nasa.gov/neptune/moons/naiad/]https://science.nasa.gov/neptune/moons/naiad[/url]
+ [url=https://science.nasa.gov/neptune/moons/thalassa/]https://science.nasa.gov/neptune/moons/thalassa[/url]
+ [url=https://commons.wikimedia.org/wiki/File:Despina.jpg]https://commons.wikimedia.org/wiki/File:Despina.jpg[/url]
+ [url=https://commons.wikimedia.org/wiki/File:Galatea_moon.jpg]https://commons.wikimedia.org/wiki/File:Galatea_moon.jpg[/url]
+ [url=https://photojournal.jpl.nasa.gov/catalog/PIA02206]https://photojournal.jpl.nasa.gov/catalog/PIA02206[/url]
+ [url=https://www.nasa.gov/history/30-years-ago-voyager-2-explores-neptune]https://www.nasa.gov/history/30-years-ago-voyager-2-explores-neptune[/url]
+[/ul]
+
+
+
+[center][b][u]Biblioteki i kod[/u][/b][/center]
+
+[b]Godot Engine[/b]
+	Godot Engine contributors
+	[i][url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]Licencja MIT[/url][/i]
+[ul]
+ [url=https://godotengine.org/license]https://godotengine.org/license[/url]
+[/ul]
+
+[b]Starlight[/b]
+	Tiffany Bennett (tiffany352)
+	[i][url=https://github.com/tiffany352/godot-starlight/blob/main/LICENSE.md]Licencja MIT[/url][/i]
+[ul]
+ [url=https://github.com/tiffany352/godot-starlight]https://github.com/tiffany352/godot-starlight[/url]
+[/ul]
+
+
+
+[center][b][u]Teksty licencji[/u][/b][/center]
+[code]
+Godot Engine (https://github.com/godotengine/godot)
+
+Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Starlight (https://github.com/tiffany352/godot-starlight)
+
+Copyright 2023 Tiffany Bennett
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[/code]"
+
+[node name="URIOpener" type="Node" parent="Panel/MarginContainer/VBoxContainer/TabContainer"]
+script = ExtResource("3_h26oh")
+
+[connection signal="pressed" from="Panel/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="meta_clicked" from="Panel/MarginContainer/VBoxContainer/TabContainer/O projekcie/RichTextLabel" to="Panel/MarginContainer/VBoxContainer/TabContainer/URIOpener" method="open_uri"]
+[connection signal="meta_clicked" from="Panel/MarginContainer/VBoxContainer/TabContainer/Źródła i Licencje/RichTextLabel" to="Panel/MarginContainer/VBoxContainer/TabContainer/URIOpener" method="open_uri"]
